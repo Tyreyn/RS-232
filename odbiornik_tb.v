@@ -1,9 +1,11 @@
 module odbiornik_tb;
     reg clk_i,rst_i,RXD_i;
-    wire div_clk;
+    wire div_clk,TXD_o;
+    wire stop,tx;
     odbiornik UUT(.clk_i(clk_i),
                   .rst_i(rst_i),
-                  .RXD_i(RXD_i)
+                  .RXD_i(RXD_i),
+                  .TXD_o(TXD_o)
                   );
 
   
