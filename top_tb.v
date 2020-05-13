@@ -3,8 +3,9 @@
 module top_tb;
     reg clk_i=0,rst_i=0,RXD_i=1;
     wire [7:0] data;
-    wire txstart;
     wire TXD_o;
+    wire txstart;
+    wire koniec;    
     top UUT(.clk_i(clk_i),
             .rst_i(rst_i),
             .RXD_i(RXD_i),

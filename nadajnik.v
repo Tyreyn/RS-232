@@ -14,12 +14,13 @@ reg [31:0] licznik =0;
 reg [2:0] licznikBIT =0;
 reg przesylanie = 0;
 reg [7:0]txDATA =0;
+reg tx = 1;
 reg txKONIEC = 0;
 always @(posedge clk_i) begin
     case(SM)
         s_SPOCZYNEK:
             begin
-                koniec <= 0;
+                txKONIEC <= 0;
                 licznik <= 0;
                 licznikBIT <=0;
                 if(start == 1) begin
@@ -33,7 +34,7 @@ always @(posedge clk_i) begin
                 tx <= 1'b0;
                 if(licznik < 10416) begin
                     licznik <= licznik +1;
-                    SM <= s_START
+                    SM <= s_START;
                 end
                 else begin
                     licznik = 0;
@@ -75,6 +76,12 @@ always @(posedge clk_i) begin
             begin
                 SM <= s_SPOCZYNEK;
                 przesylanie <= 1'b0;
+            end
+        default:
+             begin
+                SM <=s_SPOCZYNEK;
+        end
+    endcase
 end
 assign TXD_o = tx;
 assign TX_END = txKONIEC;
