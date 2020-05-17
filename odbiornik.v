@@ -19,7 +19,7 @@ reg [2:0]SM = 0;
 reg [7:0] rxBIT = 0;
 reg [2:0] licznikBIT = 0;
 
-always @(posedge clk_i) begin
+always @(posedge clk_i, negedge rst_i) begin
     if(rst_i == 1)begin
         SM <= s_RESET;
     end
